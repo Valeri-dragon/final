@@ -5,16 +5,17 @@ import arrowUp from "./modules/arrowUp";
 import scrollSmooth from "./modules/scrollSmooth";
 import modal from "./modules/modal";
 import SliderCarousel from "./modules/sliderCarousel";
+
 arrowUp();
 
 addDotSlider("top-slider", "item", "slick-dots", "slick-active");
 //если отрисовываем dots, тогда в sliderModule обязателньо активынй класс слайда и активный класс dots
 sliderModule("top-slider", "item", "active", "slick-active");
 
-
 mobileMenu();
 scrollSmooth();
 modal();
+
 	const options = {
     main: ".services-elements",
     wrap: ".services-carousel",
@@ -39,4 +40,5 @@ modal();
     ],
   };
   const carousel = new SliderCarousel(options);
-  carousel.init();
+   carousel.init();
+
