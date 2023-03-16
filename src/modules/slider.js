@@ -39,19 +39,6 @@ const sliderModule = (
       }
     };
 
-    // const addDot = (elems, block, activeClassDot) => {
-    //   const ul = document.createElement("ul");
-    //   ul.classList.add("slick-dots");
-    //   elems.forEach((item, index) => {
-    //     const li = document.createElement("li");
-    //     li.classList.add("dot");
-    //     dots.push(ul.appendChild(li));
-    //     if (index == 0) {
-    //       li.classList.add("slick-active");
-    //     }
-    //   });
-    //   block.append(ul);
-    //    };
     const prevSlide = (elems, index, strClass) => {
       elems[index].classList.remove(strClass);
     };
@@ -61,14 +48,18 @@ const sliderModule = (
     };
     const autoSlide = () => {
       prevSlide(slides, currentSlide, slidesActiveClass);
-      if(dots) {prevSlide(dots, currentSlide, dotsActive); }
+      if (dotsActive) {
+        prevSlide(dots, currentSlide, dotsActive);
+      } 
       currentSlide++;
 
       if (currentSlide >= slides.length) {
         currentSlide = 0;
       }
       nextSlide(slides, currentSlide, slidesActiveClass);
-      if(dots) {nextSlide(dots, currentSlide, dotsActive);} 
+      if (dotsActive) {
+        nextSlide(dots, currentSlide, dotsActive);
+      } 
       slideActiveShowClass(slidesActiveClass, slides);
     };
     const startSlide = (timer = 1500) => {
@@ -85,9 +76,9 @@ const sliderModule = (
       }
       prevSlide(slides, currentSlide, slidesActiveClass);
 
-     if (dots) {
+     if (dotsActive) {
        prevSlide(dots, currentSlide, dotsActive);
-     }
+     } 
 
       if (e.target.classList.contains("dot")) {
         dots.forEach((dot, index) => {
@@ -95,7 +86,7 @@ const sliderModule = (
             currentSlide = index;
           }
         });
-      }
+      } 
 
       if (currentSlide >= slides.length) {
         currentSlide = 0;
@@ -105,7 +96,9 @@ const sliderModule = (
         currentSlide = slides.length - 1;
       }
       nextSlide(slides, currentSlide, slidesActiveClass);
-     if(dots) {  nextSlide(dots, currentSlide, dotsActive)};
+     if (dotsActive) {
+       nextSlide(dots, currentSlide, dotsActive);
+     }
       slideActiveShowClass(slidesActiveClass, slides);
     });
 
@@ -114,7 +107,7 @@ const sliderModule = (
       (e) => {
         if (e.target.matches(".dot")) {
           stopSlide();
-        }
+        } 
       },
       true
     );
@@ -124,12 +117,12 @@ const sliderModule = (
       (e) => {
         if (e.target.matches(".dot")) {
           startSlide(timeInterval);
-        }
+        } 
       },
       true
     );
 
-    // addDot(slides, sliderBlock);
+ 
     startSlide(timeInterval);
   } else {
     return;
