@@ -6,6 +6,7 @@ import scrollSmooth from "./modules/scrollSmooth";
 import modal from "./modules/modal";
 import SliderCarousel from "./modules/sliderCarousel";
 import accordeon from "./modules/accordeon";
+import sendForm from "./modules/sendForm"
 arrowUp();
 
 addDotSlider("top-slider", "item", "slick-dots", "slick-active");
@@ -42,3 +43,4 @@ const options = {
 const carousel = new SliderCarousel(options);
 carousel.init();
 accordeon("accordeon", "active");
+sendForm("form-callback");
