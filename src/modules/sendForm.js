@@ -1,7 +1,8 @@
-import validation from "./validation";
+import { validation, validateLength } from "./validation";
 import { removeMessage, showError, showSuccess } from "./helpers";
 const sendForm = (formId) => {
   const form = document.getElementById(formId);
+
   const statusBlock = document.createElement("div");
   const loadText = "Загрузка...";
   const errorText = "Ошибка...";
@@ -17,7 +18,7 @@ const sendForm = (formId) => {
         success = false;
         statusBlock.textContent = inCorrectValue;
         removeMessage(statusBlock);
-              }
+      }
     });
     return success;
   };
@@ -35,6 +36,7 @@ const sendForm = (formId) => {
   const submitForm = () => {
     const formElements = form.querySelectorAll(".form-group");
     const formInputs = form.querySelectorAll('input[type="text"]');
+    const inputName = document.getElementById("username");
     const formData = new FormData(form);
 
     const formBody = {};
@@ -46,13 +48,13 @@ const sendForm = (formId) => {
       if (val !== "") {
         formBody[key] = val;
         showSuccess(form.elements[key]);
-       } else {
-       
-       str = "Заполните поля";
+      } else {
+        str = "Заполните поля";
         showError(form.elements[key], str);
-       }
+      }
     });
 
+    validateLength(inputName);
     if (validate(formElements)) {
       sendData(formBody)
         .then((data) => {
@@ -84,7 +86,7 @@ const sendForm = (formId) => {
     validation(form);
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-            submitForm();
+      submitForm();
     });
   } catch (error) {
     console.log(error.message);
