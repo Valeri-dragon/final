@@ -69,6 +69,8 @@ const sendForm = (formId) => {
             setTimeout(() => {
               form.closest(".modal-callback").style.display = "";
               document.querySelector(".modal-overlay").style.display = "";
+              document.body.style.paddingRight = "";
+              document.body.style.overflow = "";
             }, 2500);
           }
         })
